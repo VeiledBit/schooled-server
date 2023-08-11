@@ -1,5 +1,5 @@
 const cron = require("node-cron");
-const Room = require("./models/Room");
+const Room = require("../models/Room");
 
 const deletionTask = cron.schedule(
   "*/30 * * * *",
@@ -14,12 +14,12 @@ const deletionTask = cron.schedule(
               console.log(`Deleting: ${el.roomCode}`);
             })
             .catch(function (error) {
-              console.log("Error occured during deletion.");
+              console.error("Error occured during deletion.", error);
             });
         }
       });
-    } catch (err) {
-      res.status(500).json(err);
+    } catch (error) {
+      res.status(500).json(error);
     }
   },
   {
@@ -27,6 +27,4 @@ const deletionTask = cron.schedule(
   }
 );
 
-module.exports = {
-  deletionTask,
-};
+module.exports = deletionTask;
