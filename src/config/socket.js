@@ -5,7 +5,7 @@ const { getRandomInt } = require("../util/room");
 
 const initializeSocket = (server) => {
   const io = socketIO(server, {
-    cocors: {
+    cors: {
       origin: "*",
     },
   });
